@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git -C /Users/carloshenrique/Documents/Github/PrimeCarYT-op2-1 diff)",
+      "Bash(git -C /Users/carloshenrique/Documents/Github/PrimeCarYT-op2-1 commit -m ' *)"
+    ]
+  }
+}
