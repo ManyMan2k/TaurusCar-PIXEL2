@@ -20,9 +20,7 @@
   <meta name="twitter:image"
     content="https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/e0a54b8f-7162-4fcc-b0d2-1266454c9ddf/id-preview-71264c36--dac90387-be91-4150-a5cb-625489ed3568.lovable.app-1771305540410.png">
 
-
-
-    <!-- Google tag (gtag.js) -->
+<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18123712630"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -39,8 +37,6 @@
   async
   defer
 ></script>
-
-
 
 <script>
   window.googlePixelId = "69e3181c44d85d3156e214ce";
@@ -79,25 +75,12 @@ window.goToCheckout = function () {
   var utmKeys = ["utm_source","utm_medium","utm_campaign","utm_term","utm_content","src","sck","xcod"];
 
   var currentParams = new URLSearchParams(window.location.search);
-
-  // fallback: recupera UTMs salvas pelo UTMify caso não estejam mais na URL
-  function getStoredUtm(key) {
-    try {
-      var ls = localStorage.getItem(key) || localStorage.getItem("utmify_" + key);
-      if (ls) return ls;
-    } catch(e) {}
-    var m = document.cookie.match(new RegExp("(?:^|; )" + key + "=([^;]*)"));
-    if (m) return decodeURIComponent(m[1]);
-    var m2 = document.cookie.match(new RegExp("(?:^|; )utmify_" + key + "=([^;]*)"));
-    if (m2) return decodeURIComponent(m2[1]);
-    return null;
-  }
-
   var checkoutParams = new URLSearchParams();
 
   utmKeys.forEach(function(key){
-    var value = currentParams.get(key) || getStoredUtm(key);
-    if (value) checkoutParams.set(key, value);
+      if(currentParams.has(key)){
+          checkoutParams.set(key, currentParams.get(key));
+      }
   });
 
   var finalUrl = baseUrl;
@@ -114,5 +97,6 @@ window.goToCheckout = function () {
   <link rel="stylesheet" crossorigin href="/assets/index-X9PTbbRc.css">
   <script defer src="https://tapetevolucar.com/~flock.js" data-proxy-url="https://tapetevolucar.com/~api/analytics"></script>
 </head>
+
 
 </html>
