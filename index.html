@@ -79,12 +79,25 @@ window.goToCheckout = function () {
   var utmKeys = ["utm_source","utm_medium","utm_campaign","utm_term","utm_content","src","sck","xcod"];
 
   var currentParams = new URLSearchParams(window.location.search);
+
+  // fallback: recupera UTMs salvas pelo UTMify caso não estejam mais na URL
+  function getStoredUtm(key) {
+    try {
+      var ls = localStorage.getItem(key) || localStorage.getItem("utmify_" + key);
+      if (ls) return ls;
+    } catch(e) {}
+    var m = document.cookie.match(new RegExp("(?:^|; )" + key + "=([^;]*)"));
+    if (m) return decodeURIComponent(m[1]);
+    var m2 = document.cookie.match(new RegExp("(?:^|; )utmify_" + key + "=([^;]*)"));
+    if (m2) return decodeURIComponent(m2[1]);
+    return null;
+  }
+
   var checkoutParams = new URLSearchParams();
 
   utmKeys.forEach(function(key){
-      if(currentParams.has(key)){
-          checkoutParams.set(key, currentParams.get(key));
-      }
+    var value = currentParams.get(key) || getStoredUtm(key);
+    if (value) checkoutParams.set(key, value);
   });
 
   var finalUrl = baseUrl;
