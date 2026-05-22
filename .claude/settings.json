@@ -2,7 +2,9 @@
   "permissions": {
     "allow": [
       "Bash(git -C /Users/carloshenrique/Documents/Github/PrimeCarYT-op2-1 diff)",
-      "Bash(git -C /Users/carloshenrique/Documents/Github/PrimeCarYT-op2-1 commit -m ' *)"
+      "Bash(git -C /Users/carloshenrique/Documents/Github/PrimeCarYT-op2-1 commit -m ' *)",
+      "Bash(cd \"/Users/carloshenrique/Documents/Github/PrimeCarYT-op3\" && gh repo create \"OP 3 - PrimeCar\" --public --source=. --remote=origin --push 2>&1)",
+      "Read(//Users/carloshenrique/Documents/Github/PrimeCarYT-op3/**)"
     ]
   }
 }
